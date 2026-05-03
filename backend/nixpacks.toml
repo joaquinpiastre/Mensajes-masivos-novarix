@@ -1,0 +1,6 @@
+# Railway / Nixpacks: servicio con Root Directory = backend
+[phases.build]
+cmds = ["npm run build"]
+
+[start]
+cmd = "npm start"

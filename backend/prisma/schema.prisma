@@ -1,0 +1,134 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id              String           @id @default(cuid())
+  email           String           @unique
+  password        String
+  name            String
+  companyName     String?
+  role            String           @default("client")
+  active          Boolean          @default(true)
+  credits         Int              @default(0)
+  createdAt       DateTime         @default(now())
+  campaigns       Campaign[]
+  contacts        Contact[]
+  importJobs      ImportJob[]
+  whatsappConfig  WhatsappConfig?
+}
+
+model WhatsappConfig {
+  id            String   @id @default(cuid())
+  userId        String   @unique
+  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  phoneNumberId String
+  accessToken   String
+  verifyToken   String
+  isActive      Boolean  @default(true)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@index([phoneNumberId])
+}
+
+model Contact {
+  id           String    @id @default(cuid())
+  name         String
+  phone        String
+  group        String?
+  tags         String[]  @default([])
+  customFields Json?
+  optIn        Boolean   @default(true)
+  lastMessageAt DateTime?
+  userId       String
+  user         User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt    DateTime  @default(now())
+
+  @@index([userId, group])
+  @@index([userId, createdAt])
+}
+
+model Template {
+  id        String   @id @default(cuid())
+  name      String
+  body      String
+  variables String[]
+  status    String   @default("pending")
+  userId    String
+  createdAt DateTime @default(now())
+}
+
+model Campaign {
+  id          String       @id @default(cuid())
+  name        String
+  message     String
+  templateId  String?
+  mode        String
+  channel     String       @default("internal")
+  status      String       @default("draft")
+  audienceRules Json?
+  createdBy   String?
+  scheduledAt DateTime?
+  totalCount  Int          @default(0)
+  sentCount   Int          @default(0)
+  failedCount Int          @default(0)
+  userId      String
+  user        User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  logs        MessageLog[]
+  createdAt   DateTime     @default(now())
+  sentAt      DateTime?
+
+  @@index([userId, status])
+  @@index([userId, createdAt])
+}
+
+model MessageLog {
+  id          String    @id @default(cuid())
+  campaignId  String
+  campaign    Campaign  @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+  phone       String
+  name        String
+  status      String
+  provider    String    @default("internal")
+  externalId  String?
+  attempt     Int       @default(1)
+  error       String?
+  sentAt      DateTime  @default(now())
+  deliveredAt DateTime?
+  readAt      DateTime?
+
+  @@index([campaignId, status])
+  @@index([campaignId, sentAt])
+}
+
+model Payment {
+  id          String   @id @default(cuid())
+  userId      String
+  amount      Float
+  credits     Int
+  mpPaymentId String?
+  status      String   @default("pending")
+  createdAt   DateTime @default(now())
+}
+
+model ImportJob {
+  id            String   @id @default(cuid())
+  userId        String
+  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  fileName      String
+  totalRows     Int      @default(0)
+  importedRows  Int      @default(0)
+  invalidRows   Int      @default(0)
+  duplicateRows Int      @default(0)
+  status        String   @default("completed")
+  errors        Json?
+  createdAt     DateTime @default(now())
+
+  @@index([userId, createdAt])
+}

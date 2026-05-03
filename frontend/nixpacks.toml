@@ -1,0 +1,8 @@
+# Railway / Nixpacks: servicio con Root Directory = frontend
+# Variable VITE_API_URL debe estar definida en Railway antes del build.
+
+[phases.build]
+cmds = ["npm run build"]
+
+[start]
+cmd = "npm start"
