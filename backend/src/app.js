@@ -15,11 +15,32 @@ dotenv.config();
 
 const app = express();
 
-const allowedOrigins = process.env.FRONTEND_URL
-  ? [process.env.FRONTEND_URL, "http://localhost:5173"]
-  : true;
+function normalizeOrigin(url) {
+  if (!url) return "";
+  return url.replace(/\/$/, "");
+}
 
-app.use(cors({ origin: allowedOrigins, credentials: true }));
+/** Orígenes permitidos: FRONTEND_URL puede ser varios separados por coma; se ignora barra final. */
+function corsOriginCallback(origin, callback) {
+  const raw = process.env.FRONTEND_URL || "";
+  const list = raw
+    .split(",")
+    .map((s) => normalizeOrigin(s.trim()))
+    .filter(Boolean);
+  if (list.length === 0) {
+    return callback(null, true);
+  }
+  if (!origin) {
+    return callback(null, true);
+  }
+  const n = normalizeOrigin(origin);
+  if (list.includes(n) || /^https?:\/\/localhost(?::\d+)?$/i.test(n)) {
+    return callback(null, true);
+  }
+  return callback(new Error("CORS: origen no permitido"));
+}
+
+app.use(cors({ origin: corsOriginCallback, credentials: true }));
 app.use(express.json());
 
 app.get("/health", (_req, res) => {
