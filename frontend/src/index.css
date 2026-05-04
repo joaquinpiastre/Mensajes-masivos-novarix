@@ -2,14 +2,18 @@
 
 :root {
   font-family: "DM Sans", Inter, system-ui, sans-serif;
-  color: #101014;
-  background-color: #f6f7f9;
-  --nx-accent: #0891b2;
-  --nx-accent-hover: #0e7490;
-  --nx-ink: #0a0a0c;
-  --nx-muted: #64748b;
-  --nx-header: #050508;
-  --nx-card-border: rgba(15, 23, 42, 0.08);
+  color: #e2e8f0;
+  background-color: #0a051e;
+  --nx-accent: #9d50ff;
+  --nx-accent-soft: rgba(157, 80, 255, 0.35);
+  --nx-accent-hover: #b06fff;
+  --nx-ink: #f8fafc;
+  --nx-muted: #94a3b8;
+  --nx-header: #0c0618;
+  --nx-card-border: rgba(157, 80, 255, 0.22);
+  --nx-surface: #160d35;
+  --nx-surface-2: #1e1244;
+  --nx-app-bg: #0a051e;
 }
 
 * {
@@ -18,6 +22,8 @@
 
 body {
   margin: 0;
+  background: var(--nx-app-bg);
+  color: #e2e8f0;
 }
 
 a {
@@ -38,10 +44,12 @@ a {
 }
 
 .card {
-  background: #fff;
-  border-radius: 0.75rem;
+  background: var(--nx-surface);
+  color: #e2e8f0;
+  border-radius: 0.85rem;
   padding: 1rem;
-  box-shadow: 0 4px 16px rgba(16, 24, 40, 0.08);
+  border: 1px solid var(--nx-card-border);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
   margin-bottom: 1rem;
 }
 
@@ -60,7 +68,7 @@ a {
 }
 
 .mode-manual {
-  background: #0891b2;
+  background: #7c3aed;
 }
 
 .mode-automatic {
@@ -72,10 +80,12 @@ select,
 textarea,
 button {
   width: 100%;
-  border: 1px solid #d1d5db;
+  border: 1px solid rgba(157, 80, 255, 0.28);
   border-radius: 0.5rem;
   padding: 0.6rem 0.75rem;
   font: inherit;
+  background: rgba(10, 5, 30, 0.55);
+  color: #f1f5f9;
 }
 
 button {
@@ -103,11 +113,12 @@ button:hover {
 
 .dashboard-header h2 {
   margin: 0 0 0.25rem;
+  color: var(--nx-ink);
 }
 
 .dashboard-header p {
   margin: 0;
-  color: #4b5563;
+  color: var(--nx-muted);
 }
 
 .dashboard-header-actions {
@@ -130,8 +141,8 @@ button:hover {
 }
 
 .health-pill.ok {
-  background: #ecfeff;
-  color: #0e7490;
+  background: rgba(34, 197, 94, 0.15);
+  color: #86efac;
 }
 
 .health-pill.down {
@@ -141,7 +152,7 @@ button:hover {
 
 .dashboard-error {
   margin: 0;
-  color: #b91c1c;
+  color: #fca5a5;
   font-weight: 600;
 }
 
@@ -153,7 +164,7 @@ button:hover {
 
 .kpi-card p {
   margin: 0;
-  color: #6b7280;
+  color: var(--nx-muted);
   font-size: 0.9rem;
 }
 
@@ -161,6 +172,7 @@ button:hover {
   display: block;
   margin-top: 0.3rem;
   font-size: 1.8rem;
+  color: #fff;
 }
 
 .dashboard-grid {
@@ -179,7 +191,8 @@ button:hover {
   display: flex;
   justify-content: space-between;
   padding: 0.5rem 0;
-  border-bottom: 1px solid #eef2f7;
+  border-bottom: 1px solid rgba(157, 80, 255, 0.12);
+  color: #cbd5e1;
 }
 
 .status-list li:last-child {
@@ -193,7 +206,7 @@ button:hover {
 .progress-bar {
   width: 100%;
   height: 10px;
-  background: #e5e7eb;
+  background: rgba(255, 255, 255, 0.08);
   border-radius: 999px;
   overflow: hidden;
 }
@@ -201,13 +214,13 @@ button:hover {
 .progress-bar span {
   display: block;
   height: 100%;
-  background: linear-gradient(90deg, #0891b2 0%, #06b6d4 100%);
+  background: linear-gradient(90deg, #7c3aed 0%, #9d50ff 55%, #c084fc 100%);
 }
 
 .progress-wrap small {
   display: inline-block;
   margin-top: 0.5rem;
-  color: #4b5563;
+  color: var(--nx-muted);
 }
 
 .quick-actions {
@@ -217,9 +230,9 @@ button:hover {
 
 .quick-actions a {
   display: inline-block;
-  background: #ecfeff;
-  border: 1px solid #cffafe;
-  color: #0e7490;
+  background: rgba(157, 80, 255, 0.12);
+  border: 1px solid rgba(157, 80, 255, 0.35);
+  color: #e9d5ff;
   border-radius: 0.6rem;
   padding: 0.6rem 0.75rem;
   font-weight: 600;
@@ -238,15 +251,15 @@ button:hover {
   justify-content: space-between;
   align-items: center;
   gap: 0.75rem;
-  background: #f9fafb;
-  border: 1px solid #eef2f7;
+  background: rgba(10, 5, 30, 0.45);
+  border: 1px solid rgba(157, 80, 255, 0.15);
   border-radius: 0.6rem;
   padding: 0.65rem;
 }
 
 .activity-list p {
   margin: 0.2rem 0 0;
-  color: #6b7280;
+  color: var(--nx-muted);
   font-size: 0.85rem;
 }
 
@@ -306,7 +319,8 @@ button:hover {
 /* --- Novarix-style shell & marketing --- */
 
 .nx-app {
-  background: #f6f7f9;
+  background: radial-gradient(ellipse 100% 80% at 50% -20%, #1a1040 0%, #0a051e 42%, #050308 100%);
+  min-height: 100vh;
 }
 
 .nx-main {
@@ -314,13 +328,14 @@ button:hover {
 }
 
 .nx-app-header {
-  background: var(--nx-header);
+  background: linear-gradient(180deg, rgba(22, 13, 53, 0.98) 0%, rgba(10, 5, 30, 0.95) 100%);
   color: #f8fafc;
   padding: 0.75rem 1.25rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  border-bottom: 1px solid rgba(157, 80, 255, 0.18);
   position: sticky;
   top: 0;
   z-index: 40;
+  backdrop-filter: blur(10px);
 }
 
 .nx-app-header-inner {
@@ -355,9 +370,10 @@ button:hover {
   width: 2rem;
   height: 2rem;
   border-radius: 0.45rem;
-  background: linear-gradient(135deg, #0891b2 0%, #06b6d4 100%);
+  background: linear-gradient(135deg, #7c3aed 0%, #9d50ff 45%, #c084fc 100%);
   font-size: 1rem;
   font-weight: 800;
+  box-shadow: 0 0 20px rgba(157, 80, 255, 0.35);
 }
 
 .nx-app-nav {
@@ -376,7 +392,8 @@ button:hover {
 }
 
 .nx-app-nav a:hover {
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(157, 80, 255, 0.18);
+  color: #fff;
 }
 
 .nx-app-user {
@@ -600,28 +617,79 @@ button:hover {
 
 .nx-auth-page {
   min-height: 100vh;
-  background: linear-gradient(180deg, #050508 0%, #0f172a 100%);
+  background: radial-gradient(ellipse 85% 65% at 50% -15%, #1e1244 0%, #120a2e 38%, #0a051e 72%, #050308 100%);
   padding: 2rem 1rem 3rem;
 }
 
-.nx-auth-brand-top {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.6rem;
-  margin-bottom: 1.5rem;
-  font-weight: 700;
-  font-size: 1.1rem;
-  color: #f8fafc;
+.nx-auth-brand-block {
+  text-align: center;
+  margin-bottom: 2rem;
+  max-width: 28rem;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.nx-auth-brand-top .nx-brand-mark {
-  flex-shrink: 0;
+.nx-auth-brand-title {
+  margin: 0;
+  font-size: clamp(1.75rem, 5vw, 2.35rem);
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  color: #f8fafc;
+  line-height: 1.15;
+}
+
+.nx-auth-brand-tagline {
+  margin: 0.65rem 0 0;
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: #94a3b8;
+  line-height: 1.45;
 }
 
 .nx-auth-card {
   max-width: 420px;
   margin: 0 auto;
+}
+
+.nx-auth-page .nx-auth-card.card,
+.nx-auth-page .card.nx-auth-card {
+  background: #160d35;
+  border: 1px solid rgba(157, 80, 255, 0.28);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55);
+  color: #f1f5f9;
+}
+
+.nx-auth-page .nx-auth-card h2,
+.nx-auth-page .card.nx-auth-card h2 {
+  color: #fff;
+}
+
+.nx-auth-page .nx-auth-form label {
+  color: #cbd5e1;
+}
+
+.nx-auth-page .nx-auth-card input {
+  background: rgba(0, 0, 0, 0.35);
+  border-color: rgba(157, 80, 255, 0.3);
+  color: #fff;
+}
+
+.nx-auth-page .nx-auth-footer {
+  color: #a78bfa;
+  text-align: center;
+}
+
+.nx-auth-page .nx-auth-footer a {
+  color: #c4b5fd;
+}
+
+.nx-auth-brand-accent {
+  margin: 0.4rem 0 0;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #c084fc;
 }
 
 .nx-auth-card h2 {
@@ -654,10 +722,22 @@ button:hover {
 
 .nx-btn-primary-inline {
   margin-top: 0.25rem;
+  background: linear-gradient(135deg, #7c3aed 0%, #9d50ff 55%, #a855f7 100%);
+  font-weight: 700;
+  box-shadow: 0 8px 28px rgba(157, 80, 255, 0.35);
+}
+
+.nx-btn-primary-inline:hover {
+  filter: brightness(1.06);
 }
 
 .nx-admin-head {
   margin-bottom: 1rem;
+}
+
+.nx-admin-head h2 {
+  color: #fff;
+  margin: 0 0 0.35rem;
 }
 
 .nx-admin-create h3 {
@@ -678,7 +758,218 @@ button:hover {
 .nx-table td {
   text-align: left;
   padding: 0.65rem 0.5rem;
-  border-bottom: 1px solid #e5e7eb;
+  border-bottom: 1px solid rgba(157, 80, 255, 0.12);
+}
+
+.nx-table-dark th {
+  color: #c4b5fd;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.nx-table-dark td {
+  color: #e2e8f0;
+  vertical-align: middle;
+}
+
+.nx-cell-sub {
+  font-size: 0.8rem;
+  color: var(--nx-muted);
+  margin-top: 0.15rem;
+}
+
+.nx-cell-muted {
+  font-size: 0.8rem;
+  color: var(--nx-muted);
+  white-space: nowrap;
+}
+
+.nx-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.nx-pill-ok {
+  background: rgba(34, 197, 94, 0.18);
+  color: #86efac;
+}
+
+.nx-pill-off {
+  background: rgba(248, 113, 113, 0.15);
+  color: #fca5a5;
+}
+
+.nx-admin-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  justify-content: flex-end;
+}
+
+.nx-btn-ghost-table,
+.nx-btn-danger-table {
+  width: auto;
+  padding: 0.35rem 0.55rem;
+  font-size: 0.78rem;
+  border-radius: 0.45rem;
+}
+
+.nx-btn-ghost-table {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(157, 80, 255, 0.25);
+  color: #e9d5ff;
+}
+
+.nx-btn-ghost-table:hover:not(:disabled) {
+  background: rgba(157, 80, 255, 0.2);
+}
+
+.nx-btn-danger-table {
+  background: rgba(127, 29, 29, 0.35);
+  border: 1px solid rgba(248, 113, 113, 0.35);
+  color: #fecaca;
+}
+
+.nx-btn-danger-table:hover:not(:disabled) {
+  background: rgba(185, 28, 28, 0.45);
+}
+
+.nx-btn-ghost-table:disabled,
+.nx-btn-danger-table:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.nx-admin-banner {
+  padding: 0.65rem 0.85rem;
+  border-radius: 0.5rem;
+  background: rgba(127, 29, 29, 0.25);
+}
+
+.nx-admin-loading {
+  padding: 2rem;
+  text-align: center;
+}
+
+.nx-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  background: rgba(5, 3, 16, 0.75);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.nx-modal {
+  width: 100%;
+  max-width: 480px;
+  max-height: 90vh;
+  overflow: auto;
+  position: relative;
+}
+
+.nx-modal-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.nx-modal-head h3 {
+  margin: 0;
+  color: #fff;
+}
+
+.nx-modal-close {
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
+  line-height: 1;
+  font-size: 1.35rem;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #e2e8f0;
+  border-radius: 0.4rem;
+}
+
+.nx-modal-close:hover {
+  background: rgba(157, 80, 255, 0.2);
+}
+
+.nx-modal-email {
+  margin: 0.25rem 0 1rem;
+  font-size: 0.85rem;
+}
+
+.nx-modal-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.85rem;
+}
+
+.nx-modal-grid label {
+  display: grid;
+  gap: 0.35rem;
+  font-size: 0.8rem;
+  color: #cbd5e1;
+}
+
+.nx-modal-span2 {
+  grid-column: span 2;
+}
+
+.nx-modal-check {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-direction: row;
+}
+
+.nx-checkbox {
+  width: auto !important;
+  margin: 0;
+  accent-color: var(--nx-accent);
+}
+
+.nx-modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.6rem;
+  margin-top: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.nx-btn-secondary-inline {
+  width: auto;
+  background: transparent;
+  border: 1px solid rgba(157, 80, 255, 0.45);
+  color: #e9d5ff;
+  padding: 0.55rem 1rem;
+}
+
+.nx-btn-secondary-inline:hover {
+  background: rgba(157, 80, 255, 0.12);
+}
+
+.nx-surface h3,
+.nx-surface h2 {
+  color: #f8fafc;
+}
+
+.dashboard-layout .card h3 {
+  color: #f1f5f9;
+}
+
+.dashboard-layout .card p {
+  color: var(--nx-muted);
 }
 
 .nx-select-inline {

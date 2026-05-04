@@ -15,10 +15,8 @@ export default function AppChrome() {
       <header className="nx-app-header">
         <div className="nx-app-header-inner">
           <Link to="/dashboard" className="nx-brand">
-            <span className="nx-brand-mark">N</span>
-            <span>
-              Novarix <small>Messaging</small>
-            </span>
+            <span className="nx-brand-mark">M</span>
+            <span>Mensajes masivos</span>
           </Link>
           <nav className="nx-app-nav">
             <Link to="/dashboard">Dashboard</Link>

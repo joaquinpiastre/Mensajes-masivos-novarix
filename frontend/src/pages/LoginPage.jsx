@@ -31,13 +31,14 @@ export default function LoginPage() {
 
   return (
     <div className="nx-auth-page">
-      <div className="nx-auth-brand-top">
-        <span className="nx-brand-mark">N</span>
-        <span>Novarix Messaging</span>
+      <div className="nx-auth-brand-block">
+        <h1 className="nx-auth-brand-title">Mensajes masivos</h1>
+        <p className="nx-auth-brand-accent">Plataforma empresarial</p>
+        <p className="nx-auth-brand-tagline">Automatizá tu atención. Escalá tu negocio.</p>
       </div>
       <div className="nx-auth-card card">
-        <h2>Iniciar sesión</h2>
-        <p className="nx-muted">Accedé al panel de mensajería Novarix.</p>
+        <h2>Iniciá sesión</h2>
+        <p className="nx-muted">Accedé al panel para campañas y WhatsApp.</p>
         {expired ? <p className="dashboard-error">Tu sesión expiró. Iniciá sesión de nuevo.</p> : null}
         {error ? <p className="dashboard-error">{error}</p> : null}
         <form onSubmit={onSubmit} className="nx-auth-form">
@@ -62,7 +63,7 @@ export default function LoginPage() {
             />
           </label>
           <button type="submit" className="nx-btn-primary-inline">
-            Entrar
+            Ingresar
           </button>
         </form>
         <p className="nx-auth-footer">
